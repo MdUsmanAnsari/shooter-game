@@ -126,15 +126,10 @@ const animate = () => {
 
         
 
-          if(Math.floor(isIntersectValue)  == circle.radius + shootCircle.radius){
+          if(Math.floor(isIntersectValue)  <= circle.radius + shootCircle.radius){
             circles.splice(idx, 1);
             bullets.splice(index,1);
           }
-
-          if(Math.floor(isIntersectValue)  < circle.radius + shootCircle.radius){
-            bullets.splice(index,1);
-            circles.splice(idx, 1);
-        }
 
     })
 
