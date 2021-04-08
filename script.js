@@ -6,20 +6,33 @@ canvas.height = window.innerHeight;
 
 let isShoot = false;
 
+const spaceImage = new Image();
+      spaceImage.src = "space.png";
+
+const fireImage = new Image();
+      fireImage.src = "fire.gif";
+
+
+
 class Circle {
   constructor() {
     this.x = Math.random() * window.innerWidth + 3;
     this.y = -10;
     this.radius = 30;
     this.velocity = 0.9;
+    this.width = 20;
+    this.height = 25;
     this.draw();
   }
 
   draw() {
-    context.beginPath();
-    context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-    context.fillStyle = "blue";
-    context.fill();
+    // context.beginPath();
+    // context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+    // context.fillStyle = "blue";
+    
+    // context.fill();
+
+    context.drawImage(fireImage, this.x, this.y , this.width,this.height);
   }
 
   update() {
@@ -33,7 +46,7 @@ class ShootCircle {
   constructor( x ) {
     this.x = x;
     this.y = window.innerHeight - 30;
-    this.radius = 10;
+    this.radius = 6;
     this.velocity = 0.9;
     this.draw();
   }
@@ -43,27 +56,36 @@ class ShootCircle {
     context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     context.fillStyle = "blue";
     context.fill();
+    
   }
 
   update() {
-    if (isShoot) this.y -= 1;
+    if (isShoot) {
+      this.y -= 1;
+      this.velocity += 0.9;
+    }
     this.draw();
   }
 }
 
 class Controller {
   constructor() {
-    this.x = window.innerWidth / 2 - 25;
-    this.y = window.innerHeight - 50;
+
     this.width = 50;
-    this.height = 50;
+    this.height = 70;
+
+    this.x = window.innerWidth / 2 - 25;
+    this.y = window.innerHeight - this.height
+    ;
+ 
   }
 
   draw() {
     context.beginPath();
-    context.fillStyle = "red";
-    context.fillRect(this.x, this.y, this.width, this.height);
-    context.fill();
+    // context.fillStyle = "red";
+    // context.fillRect(this.x, this.y, this.width, this.height);
+    // context.fill();
+    context.drawImage(spaceImage, this.x, this.y , this.width,this.height);
   }
 
   update(increment , is) {
@@ -86,7 +108,7 @@ class Controller {
 const circles = [];
 const controller = new Controller();
 
-const bullets = [new ShootCircle(window.innerWidth / 2)];
+const bullets = [];
 
 
 console.log(controller);
@@ -140,7 +162,7 @@ const animate = () => {
 
   requestAnimationFrame(animate);
 };
-7;
+
 
 window.addEventListener("keydown", (event) => {
 
