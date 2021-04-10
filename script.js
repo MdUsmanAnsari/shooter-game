@@ -5,10 +5,10 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const spaceImage = new Image();
-spaceImage.src = "space.png";
+spaceImage.src = "./resources/space.png";
 
 const fireImage = new Image();
-fireImage.src = "fire.gif";
+fireImage.src = "./resources/fire.gif";
 
 class Circle {
   constructor() {
